@@ -4,7 +4,7 @@
   "author": "The WebRTC project authors (https://www.webrtc.org/)",
   "description": "WebRTC test framework utilities.",
   "license": "BSD-3-Clause",
-  "main": "src/selenium/selenium-lib.js",
+  "main": "main.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/webrtc/utilities.git"

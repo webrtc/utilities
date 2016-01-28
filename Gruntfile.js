@@ -11,7 +11,7 @@ module.exports = function(grunt) {
       options: {
         configFile: '.eslintrc'
       },
-      target: ['src/**/*.js']
+      target: ['src/**/*.js', 'main.js']
     },
     githooks: {
       all: {
