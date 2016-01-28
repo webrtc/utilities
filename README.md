@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/webrtc/utilities.svg?branch=master](https://travis-ci.org/webrtc/utilities)
+[![Build Status](https://travis-ci.org/webrtc/utilities.svg?branch=master)](https://travis-ci.org/webrtc/utilities)
 # WebRTC utilities #
 Contains shared utilities, support tools and frameworks for the other WebRTC sub repositories.
 
