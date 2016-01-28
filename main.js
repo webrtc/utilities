@@ -12,6 +12,6 @@
 // Add all modules to be exported here.
 var seleniumLib = require('./src/selenium/selenium-lib.js');
 
-module.export = {
+module.exports = {
   seleniumLib: seleniumLib
 };
