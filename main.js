@@ -10,8 +10,8 @@
 'use strict';
 
 // Add all modules to be exported here.
-var seleniumLib = require('./src/selenium/selenium-lib.js')
+var seleniumLib = require('./src/selenium/selenium-lib.js');
 
 module.export = {
-  seleniumLib: seleniumLib;
-}
+  seleniumLib: seleniumLib
+};
