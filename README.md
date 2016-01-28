@@ -2,9 +2,9 @@
 Contains shared utilities, support tools and frameworks for the other WebRTC sub repositories.
 
 ## Install using npm ##
-´´´
+```
 npm install webrtc-utilities --save-dev
-´´´
+```
 
 ## SeleniumLib ##
 src/selenium-lib.js contains all that is needed to build a selenium webdriver driver for Chrome and Firefox (whatever is set in the env $BROWSER variable).
