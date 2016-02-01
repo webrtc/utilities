@@ -30,3 +30,35 @@ test('Check Selenium lib buildDriver method', function(t) {
     t.end();
   });
 });
+
+test('Check Selenium lib getStats method', function(t) {
+  var driver = require('../main.js').seleniumLib.buildDriver();
+  var getStats = require('../main.js').seleniumLib.getStats;
+
+  driver.get('file://' + process.cwd() + '/test/testpage.html')
+  .then(function() {
+    t.plan(3);
+    t.pass('Page loaded');
+    return driver.executeScript('window.pc1 = new RTCPeerConnection;' +
+        'return window.pc1;');
+  })
+  .then(function(peerConnection) {
+    if (typeof peerConnection === 'object') {
+      t.pass('PeerConnection created, calling on getStats.')
+      return getStats(driver, 'pc1');
+    }
+  })
+  .then(function(response) {
+    for (var object in response) {
+      t.ok(object.toString().match('googLibjingleSession_') !== null,
+          'getStats response OK!');
+    }
+    t.end();
+  })
+  .then(null, function(err) {
+    if (err !== 'skip-test') {
+      t.fail(err);
+    }
+    t.end();
+  });
+});
