@@ -1,7 +1,12 @@
+#
+#  Copyright (c) 2016 The WebRTC project authors. All Rights Reserved.
+#
+#  Use of this source code is governed by a BSD-style license
+#  that can be found in the LICENSE file in the root of the source
+#  tree.
 #!/bin/sh
-#
+
 # Run testling with a default set of parameters
-#
 BINDIR=./browsers/bin
 export BROWSER=${BROWSER-chrome}
 export BVER=${BVER-stable}
