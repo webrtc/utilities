@@ -5,7 +5,7 @@
  *  that can be found in the LICENSE file in the root of the source
  *  tree.
  */
-/* jshint node: true */
+/* eslint-env node */
 
 'use strict';
 
@@ -21,6 +21,43 @@ test('Check Selenium lib buildDriver method', function(t) {
   driver.get('file://' + process.cwd() + '/test/testpage.html')
   .then(function() {
     t.pass('Page loaded, buildDriver OK.');
+    t.end();
+  })
+  .then(null, function(err) {
+    if (err !== 'skip-test') {
+      t.fail(err);
+    }
+    t.end();
+  });
+});
+
+test('Check Selenium lib getStats method', function(t) {
+  if (process.env.BROWSER === 'firefox') {
+    t.skip('getStats not supported on Firefox.');
+    t.end();
+    return;
+  }
+  var driver = require('../main.js').seleniumLib.buildDriver();
+  var getStats = require('../main.js').seleniumLib.getStats;
+
+  driver.get('file://' + process.cwd() + '/test/testpage.html')
+  .then(function() {
+    t.plan(3);
+    t.pass('Page loaded');
+    return driver.executeScript('window.pc1 = new RTCPeerConnection();' +
+        'return window.pc1;');
+  })
+  .then(function(peerConnection) {
+    if (typeof peerConnection.remoteDescription === 'object') {
+      t.pass('PeerConnection created, calling on getStats.')
+      return getStats(driver, 'pc1');
+    }
+  })
+  .then(function(response) {
+    for (var object in response) {
+      t.ok(object.toString().match('googLibjingleSession_') !== null,
+          'getStats response OK!');
+    }
     t.end();
   })
   .then(null, function(err) {

@@ -1,4 +1,5 @@
 browsers/
+browsers-tmp
 firefox-*.tar.bz2
 .DS_Store
 node_modules/
