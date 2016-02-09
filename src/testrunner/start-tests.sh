@@ -18,4 +18,4 @@ fi
 echo "Starting browser"
 PATH=$PATH:./node_modules/.bin
 
-node test/run-tests.js
+node ./test/run-tests.js
