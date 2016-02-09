@@ -1,6 +1,6 @@
 {
   "name": "webrtc-utilities",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author": "The WebRTC project authors (https://www.webrtc.org/)",
   "description": "WebRTC test framework utilities.",
   "license": "BSD-3-Clause",
@@ -17,7 +17,7 @@
     "travis-multirunner": "^3.0.0"
   },
   "bin": {
-    "start-tests": "src/testrunner/start-tests.sh"
+    "start-tests": "./src/testrunner/start-tests.sh"
   },
   "scripts": {
     "prepublish": "grunt githooks",
