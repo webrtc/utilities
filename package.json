@@ -1,6 +1,6 @@
 {
-  "name": "webrtc-utilities",
-  "version": "0.0.6",
+  "name": "webrtc-utilities-test",
+  "version": "0.0.5",
   "author": "The WebRTC project authors (https://www.webrtc.org/)",
   "description": "WebRTC test framework utilities.",
   "license": "BSD-3-Clause",
@@ -10,11 +10,10 @@
     "url": "https://github.com/webrtc/utilities.git"
   },
   "dependencies": {
-    "chromedriver": "^2.16.0",
-    "selenium-webdriver": "^2.48.0",
     "tape": "^4.0.0",
-    "testling": "^1.7.1",
-    "travis-multirunner": "^3.0.0"
+    "travis-multirunner": ">=3.0.0",
+    "selenium-webdriver": ">=2.48.0",
+    "chromedriver": ">=2.16.0"
   },
   "bin": {
     "start-tests": "./src/testrunner/start-tests.sh"
