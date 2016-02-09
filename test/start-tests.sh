@@ -6,7 +6,7 @@
 #  tree.
 #!/bin/sh
 
-# Run testling with a default set of parameters
+# Run with a default set of parameters
 BINDIR=./browsers/bin
 export BROWSER=${BROWSER-chrome}
 export BVER=${BVER-stable}
