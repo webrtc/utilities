@@ -16,6 +16,9 @@
     "testling": "^1.7.1",
     "travis-multirunner": "^3.0.0"
   },
+  "bin": {
+    "start-tests": "src/testrunner/start-tests.sh"
+  },
   "scripts": {
     "prepublish": "grunt githooks",
     "test": "grunt && ./test/start-tests.sh"
