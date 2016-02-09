@@ -1,6 +1,6 @@
 {
   "name": "webrtc-utilities",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "author": "The WebRTC project authors (https://www.webrtc.org/)",
   "description": "WebRTC test framework utilities.",
   "license": "BSD-3-Clause",
