@@ -71,7 +71,10 @@ function buildDriver() {
       .setChromeBinaryPath('node_modules/.bin/start-chrome')
       .addArguments('allow-file-access-from-files')
       .addArguments('use-fake-device-for-media-stream')
-      .addArguments('use-fake-ui-for-media-stream');
+      .addArguments('use-fake-ui-for-media-stream')
+      .addArguments('disable-translate')
+      .addArguments('no-process-singleton-dialog')
+      .addArguments('mute-audio');
 
   // Only enable this for Chrome >= 49.
   if (process.env.BROWSER === 'chrome' && getBrowserVersion >= '49') {
