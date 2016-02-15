@@ -11,7 +11,7 @@ npm install webrtc-utilities --save-dev
 src/selenium/selenium-lib.js contains all that is needed to build a selenium webdriver driver for Chrome and Firefox (whatever is set in the BROWSER and BVER variables).
 
 ### node and commonjs ###
-require('webrtc-utilities').seleniumLib
+`require('webrtc-utilities').seleniumLib`
 
 ## start-tests.sh ##
 src/testrunner/start-tests.sh that helps travis-multirunner to download and install Chrome and Firefox browser from stable, beta and unstable channels. Also starts the tests using node.
