@@ -136,7 +136,6 @@ function getAudioLevel() {
 // Helper function to get the video width, height and brightness for a
 // video element.
 function getVideoWidthHeightBrightness() {
-    var callback = arguments[arguments.length - 1];
     var remoteVideo = document.getElementById('remoteVideo');
     if (remoteVideo.videoWidth < 10 && remoteVideo.videoHeight < 10) {
         return [0, 0, 0];
