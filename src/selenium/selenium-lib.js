@@ -104,56 +104,56 @@ function getStats(driver, peerConnection) {
 
 // A helper function to get the audio level from a MediaStream using WebAudio.
 function getAudioLevel() {
-    var callback = arguments[arguments.length - 1];
+  var callback = arguments[arguments.length - 1];
 
-    var remoteVideo = document.getElementById('remoteVideo');
+  var remoteVideo = document.getElementById('remoteVideo');
 
-    var context = new AudioContext();
-    var analyzer = context.createAnalyser();
-    analyzer.fftSize = 1024;
+  var context = new AudioContext();
+  var analyzer = context.createAnalyser();
+  analyzer.fftSize = 1024;
 
-    var source = context.createMediaStreamSource(remoteVideo.srcObject);
-    source.connect(analyzer);
+  var source = context.createMediaStreamSource(remoteVideo.srcObject);
+  source.connect(analyzer);
 
-    window.setTimeout(function() {
-        var buffer = new Uint8Array(analyzer.fftSize);
-        analyzer.getByteTimeDomainData(buffer);
+  window.setTimeout(function() {
+    var buffer = new Uint8Array(analyzer.fftSize);
+    analyzer.getByteTimeDomainData(buffer);
 
-        var rms = 0;
-        for (var i = 0; i < buffer.length; i++) {
-            rms += buffer[i] * buffer[i];
-        }
-        rms /= buffer.length;
-        rms = Math.sqrt(rms);
+    var rms = 0;
+    for (var i = 0; i < buffer.length; i++) {
+    rms += buffer[i] * buffer[i];
+    }
+    rms /= buffer.length;
+    rms = Math.sqrt(rms);
 
-        analyzer.disconnect();
-        source.disconnect();
-        context.close();
-        callback(rms);
-    }, 500);
+    analyzer.disconnect();
+    source.disconnect();
+    context.close();
+    callback(rms);
+  }, 500);
 }
 
 // Helper function to get the video width, height and brightness for a
 // video element.
 function getVideoWidthHeightBrightness() {
-    var remoteVideo = document.getElementById('remoteVideo');
-    if (remoteVideo.videoWidth < 10 && remoteVideo.videoHeight < 10) {
-        return [0, 0, 0];
-    }
-    var canvas = document.createElement('canvas');
-    canvas.width = remoteVideo.videoWidth;
-    canvas.height = remoteVideo.videoHeight;
+  var remoteVideo = document.getElementById('remoteVideo');
+  if (remoteVideo.videoWidth < 10 && remoteVideo.videoHeight < 10) {
+    return [0, 0, 0];
+  }
+  var canvas = document.createElement('canvas');
+  canvas.width = remoteVideo.videoWidth;
+  canvas.height = remoteVideo.videoHeight;
 
-    var context = canvas.getContext('2d');
-    context.drawImage(remoteVideo, 0, 0, canvas.width, canvas.height);
-    var data = context.getImageData(0, 0, canvas.width/10, canvas.height/10).data;
+  var context = canvas.getContext('2d');
+  context.drawImage(remoteVideo, 0, 0, canvas.width, canvas.height);
+  var data = context.getImageData(0, 0, canvas.width/10, canvas.height/10).data;
 
-    // taken from https://github.com/webrtc/testrtc
-    var accumulatedLuma = 0;
-    for (var i = 0; i < data.length; i += 4) {
-        accumulatedLuma += 0.21 * data[i] + 0.72 * data[i+1] + 0.07 * data[i+2];
-    }
-    return [remoteVideo.videoWidth, remoteVideo.videoHeight, accumulatedLuma];
+  // taken from https://github.com/webrtc/testrtc
+  var accumulatedLuma = 0;
+  for (var i = 0; i < data.length; i += 4) {
+    accumulatedLuma += 0.21 * data[i] + 0.72 * data[i+1] + 0.07 * data[i+2];
+  }
+  return [remoteVideo.videoWidth, remoteVideo.videoHeight, accumulatedLuma];
 }
 
 module.exports = {
