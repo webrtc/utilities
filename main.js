@@ -10,8 +10,7 @@
 'use strict';
 
 // Add all modules to be exported here.
-var seleniumLib = require('./src/selenium/selenium-lib.js');
-
 module.exports = {
-  seleniumLib: seleniumLib
+  seleniumLib: require('./src/selenium/selenium-lib.js'),
+  videoFrameChecker: require('./src/videoframechecker.js')
 };
