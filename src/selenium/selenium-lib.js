@@ -13,6 +13,7 @@
 var webdriver = require('selenium-webdriver');
 var chrome = require('selenium-webdriver/chrome');
 var firefox = require('selenium-webdriver/firefox');
+var edge = require('selenium-webdriver/edge');
 var fs = require('fs');
 
 var sharedDriver = null;
@@ -81,10 +82,13 @@ function buildDriver() {
     chromeOptions.addArguments('--enable-experimental-web-platform-features');
   }
 
+  var edgeOptions = new edge.Options();
+
   sharedDriver = new webdriver.Builder()
       .forBrowser(process.env.BROWSER)
       .setFirefoxOptions(firefoxOptions)
       .setChromeOptions(chromeOptions)
+      .setEdgeOptions(edgeOptions)
       .build();
 
   // Set global executeAsyncScript() timeout (default is 0) to allow async
