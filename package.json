@@ -27,7 +27,7 @@
     "grunt-eslint": "^17.2.0",
     "grunt-githooks": "^0.3.1",
     "chromedriver": "^2.16.0",
-    "selenium-webdriver": "^2.48.0",
+    "selenium-webdriver": "^2.52.0",
     "tape": "^4.0.0",
     "travis-multirunner": "^3.0.0",
     "webrtc-adapter-test": ">0.2.0"
