@@ -1,6 +1,6 @@
 {
   "name": "webrtc-utilities",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "The WebRTC project authors (https://www.webrtc.org/)",
   "description": "WebRTC test framework utilities.",
   "license": "BSD-3-Clause",
@@ -30,6 +30,6 @@
     "selenium-webdriver": "^2.52.0",
     "tape": "^4.0.0",
     "travis-multirunner": "^3.0.0",
-    "webrtc-adapter-test": ">0.2.0"
+    "webrtc-adapter": "^2.0.0"
    }
 }
