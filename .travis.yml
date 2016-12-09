@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-- 4.1
+- 6
 
 env:
   matrix:
@@ -11,7 +11,6 @@ env:
     - BROWSER=firefox BVER=stable
     - BROWSER=firefox BVER=beta
     - BROWSER=firefox BVER=nightly
-    - BROWSER=firefox BVER=esr
 
 matrix:
   fast_finish: true
@@ -20,6 +19,7 @@ matrix:
     - env: BROWSER=chrome  BVER=unstable
     - env: BROWSER=firefox BVER=beta
     - env: BROWSER=firefox BVER=nightly
+    - env: BROWSER=firefox BVER=esr
 
 before_install:
   - npm install -g npm@'>=3.0.0'
