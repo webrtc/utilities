@@ -33,3 +33,10 @@ before_script:
 script:
   - node_modules/.bin/grunt
   - npm test
+
+notifications:
+  email:
+    recipients:
+      forward-webrtc-github@webrtc.org
+    on_success: always
+    on_failure: always
