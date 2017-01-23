@@ -109,8 +109,14 @@ function getStats(driver, peerConnection) {
   return driver.executeAsyncScript(
       'var callback = arguments[arguments.length - 1];' +
       peerConnection + '.getStats(null).then(function(report) {' +
-      '  callback(report);' +
-      '});');
+      '  callback(report.entries ? [...report.entries()] : report);' +
+      '});')
+    .then(function(entries) {
+      if (Array.isArray(entries)) {
+        return new Map(entries);
+      }
+      return entries;
+    });
 }
 
 module.exports = {

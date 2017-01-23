@@ -33,7 +33,7 @@ test('Check Selenium lib buildDriver method', function(t) {
 
 test('Check Selenium lib getStats method', function(t) {
   if (process.env.BROWSER === 'firefox') {
-    t.skip('getStats not supported on Firefox.');
+    t.skip('getStats test not supported on Firefox.');
     t.end();
     return;
   }
@@ -54,10 +54,10 @@ test('Check Selenium lib getStats method', function(t) {
     }
   })
   .then(function(response) {
-    for (var object in response) {
-      t.ok(object.toString().match('googLibjingleSession_') !== null,
+    response.forEach(function(object) {
+      t.ok(object.type === 'googLibjingleSession',
           'getStats response OK!');
-    }
+    });
     t.end();
   })
   .then(null, function(err) {
