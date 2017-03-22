@@ -119,7 +119,35 @@ function getStats(driver, peerConnection) {
     });
 }
 
+// Provide the webdriver driver and type of logging:
+// https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/logging_exports_Type.html
+// Browser console logs: webdriver.logging.Type.BROWSER
+// WebDriver driver logs: webdriver.logging.Type.DRIVER
+function getLogs(driver, type) {
+  // https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_Logs.html
+  driver.manage().logs().get(type)
+  .then(function(entries) {
+    return entries;
+  });
+}
+
+// Provide the webdriver driver and type of logging:
+// https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/logging_exports_Type.html
+// Browser console logs: webdriver.logging.Type.BROWSER
+// WebDriver driver logs: webdriver.logging.Type.DRIVER
+function printLogs(driver, type) {
+  // https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_Logs.html
+  driver.manage().logs().get(type)
+  .then(function(entries) {
+    entries.forEach(function(entry) {
+      console.log('[%s] %s', entry.level.name, entry.message);
+    });
+  });
+}
+
 module.exports = {
   buildDriver: buildDriver,
-  getStats: getStats
+  getStats: getStats,
+  getLogs: getLogs,
+  printLogs: printLogs
 };
