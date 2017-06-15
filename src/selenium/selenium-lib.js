@@ -49,6 +49,12 @@ function buildDriver() {
   if (sharedDriver) {
     return sharedDriver;
   }
+  // Enable console logging. Add logging for firefox once it's supported
+  // properly-
+  var logging = webdriver.logging;
+  var prefs = new logging.Preferences();
+  prefs.setLevel(logging.Type.BROWSER, logging.Level.ALL);
+
   // Firefox options.
   // http://selenium.googlecode.com/git/docs/api/javascript/module_selenium-webdriver_firefox.html
   var profile = new firefox.Profile();
@@ -75,7 +81,8 @@ function buildDriver() {
       .addArguments('use-fake-ui-for-media-stream')
       .addArguments('disable-translate')
       .addArguments('no-process-singleton-dialog')
-      .addArguments('mute-audio');
+      .addArguments('mute-audio')
+      .setLoggingPrefs(prefs);
 
   // Only enable this for Chrome >= 49.
   if (process.env.BROWSER === 'chrome' && getBrowserVersion >= '49') {
@@ -90,6 +97,7 @@ function buildDriver() {
       .setChromeOptions(chromeOptions)
       .setEdgeOptions(edgeOptions);
 
+
   if (process.env.BROWSER === 'firefox' && getBrowserVersion >= '47') {
     sharedDriver.getCapabilities().set('marionette', true);
   }
@@ -100,6 +108,13 @@ function buildDriver() {
   sharedDriver.manage().timeouts().setScriptTimeout(2000);
 
   return sharedDriver;
+}
+
+// Webdriver logging output only prints the first argument for console.log.
+// trace in common.js in the webrtc/samples has prefixes a timestamp as a first
+// argument. This overrides this to ensure we can get full console logging.
+function overrideTrace(driver) {
+  driver.executeScript('window.trace = function(arg) { console.log(arg); };');
 }
 
 // A helper function to query stats from a PeerConnection.
@@ -149,5 +164,6 @@ module.exports = {
   buildDriver: buildDriver,
   getStats: getStats,
   getLogs: getLogs,
+  overrideTrace: overrideTrace,
   printLogs: printLogs
 };

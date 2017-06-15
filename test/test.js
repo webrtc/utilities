@@ -13,6 +13,7 @@
 // The test script language comes from tape.
 var test = require('tape');
 
+
 // Start of tests.
 
 test('Check Selenium lib buildDriver method', function(t) {
@@ -24,21 +25,15 @@ test('Check Selenium lib buildDriver method', function(t) {
     t.end();
   })
   .then(null, function(err) {
-    if (err !== 'skip-test') {
-      t.fail(err);
-    }
     t.end();
   });
 });
 
-test('Check Selenium lib getStats method', function(t) {
-  if (process.env.BROWSER === 'firefox') {
-    t.skip('getStats test not supported on Firefox.');
-    t.end();
-    return;
-  }
-  var driver = require('../main.js').seleniumLib.buildDriver();
-  var getStats = require('../main.js').seleniumLib.getStats;
+test('Check Selenium lib getStats method',
+    {skip: process.env.BROWSER === 'firefox'}, function(t) {
+  var seleniumHelpers = require('../main.js').seleniumLib;
+  var driver = seleniumHelpers.buildDriver();
+  var getStats = seleniumHelpers.getStats;
 
   driver.get('file://' + process.cwd() + '/test/testpage.html')
   .then(function() {
@@ -55,15 +50,13 @@ test('Check Selenium lib getStats method', function(t) {
   })
   .then(function(response) {
     response.forEach(function(object) {
-      t.ok(object.type === 'googLibjingleSession',
+      t.equal(object.type, 'peer-connection',
           'getStats response OK!');
     });
     t.end();
   })
   .then(null, function(err) {
-    if (err !== 'skip-test') {
-      t.fail(err);
-    }
+    t.fail(err);
     t.end();
   });
 });
