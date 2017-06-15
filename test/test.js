@@ -13,7 +13,6 @@
 // The test script language comes from tape.
 var test = require('tape');
 
-
 // Start of tests.
 
 test('Check Selenium lib buildDriver method', function(t) {
