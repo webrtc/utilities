@@ -97,7 +97,6 @@ function buildDriver() {
       .setChromeOptions(chromeOptions)
       .setEdgeOptions(edgeOptions);
 
-
   if (process.env.BROWSER === 'firefox' && getBrowserVersion >= '47') {
     sharedDriver.getCapabilities().set('marionette', true);
   }
