@@ -1,8 +1,16 @@
-sudo: false
+dist: trusty
 language: node_js
 node_js:
 - 6
 
+addons:
+  apt:
+    packages:
+      - pulseaudio
+
+env:
+  global:
+    - DISPLAY=:99.0
 env:
   matrix:
     - BROWSER=chrome  BVER=stable
@@ -31,6 +39,7 @@ before_script:
   - ./node_modules/travis-multirunner/setup.sh
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - pulseaudio --start
 
 script:
   - node_modules/.bin/grunt

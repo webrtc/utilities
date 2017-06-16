@@ -110,7 +110,7 @@ function buildDriver() {
 }
 
 // Webdriver logging output only prints the first argument for console.log.
-// trace in common.js in the webrtc/samples has prefixes a timestamp as a first
+// trace in common.js in the webrtc/samples prefixes a timestamp as a first
 // argument. This overrides this to ensure we can get full console logging.
 function overrideTrace(driver) {
   driver.executeScript('window.trace = function(arg) { console.log(arg); };');
