@@ -6,6 +6,9 @@ node_js:
 addons:
   apt:
     packages:
+      - gcc
+      - g++
+      - libstdc++6
       - pulseaudio
 
 env:
