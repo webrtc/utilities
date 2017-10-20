@@ -13,7 +13,7 @@ export BVER=${BVER-stable}
 BROWSERBIN=$BINDIR/$BROWSER-$BVER
 if [ ! -x $BROWSERBIN ]; then
   echo "Installing browser"
-  ./node_modules/travis-multirunner/setup.sh
+  bash ./node_modules/travis-multirunner/setup.sh
 fi
 echo "Starting browser"
 PATH=$PATH:./node_modules/.bin

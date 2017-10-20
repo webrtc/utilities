@@ -21,25 +21,25 @@ var sharedDriver = null;
 function getBrowserVersion() {
   var browser = process.env.BROWSER;
   var browserChannel = process.env.BVER;
-  var symlink = './browsers/bin/' + browser + '-' + browserChannel + '/';
-  var symPath = fs.readlink(symlink);
 
   // Browser reg expressions and position to look for the milestone version.
-  var chromeExp = '/Chrom(e|ium)\/([0-9]+)\./';
-  var firefoxExp = '/Firefox\/([0-9]+)\./';
-  var chromePos = 2;
-  var firefoxPos = 1;
+  var chromeExp = /\/chrome\/(\d+)\./;
+  var firefoxExp = /\/firefox\/(\d+)\./;
 
-  var browserVersion = function(path, expr, pos) {
-    var match = path.match(expr);
-    return match && match.length >= pos && parseInt(match[pos], 10);
+  var browserVersion = function(expr) {
+    var symlink = './browsers/bin/' + browser + '-' + browserChannel;
+    var pathToBrowser = fs.readlinkSync(symlink);
+    var match = pathToBrowser.match(expr);
+    return match && match.length >= 1 && parseInt(match[1], 10);
   };
 
   switch (browser) {
     case 'chrome':
-      return browserVersion(symPath, chromeExp, chromePos);
+      return browserVersion(chromeExp);
     case 'firefox':
-      return browserVersion(symPath, firefoxExp, firefoxPos);
+      return browserVersion(firefoxExp);
+    case 'safari':
+      return browserChannel;
     default:
       return 'non supported browser.';
   }
@@ -85,7 +85,7 @@ function buildDriver() {
       .setLoggingPrefs(prefs);
 
   // Only enable this for Chrome >= 49.
-  if (process.env.BROWSER === 'chrome' && getBrowserVersion >= '49') {
+  if (process.env.BROWSER === 'chrome' && getBrowserVersion() >= 49) {
     chromeOptions.addArguments('--enable-experimental-web-platform-features');
   }
 
@@ -97,7 +97,7 @@ function buildDriver() {
       .setChromeOptions(chromeOptions)
       .setEdgeOptions(edgeOptions);
 
-  if (process.env.BROWSER === 'firefox' && getBrowserVersion >= '47') {
+  if (process.env.BROWSER === 'firefox' && getBrowserVersion() >= 47) {
     sharedDriver.getCapabilities().set('marionette', true);
   }
   sharedDriver = sharedDriver.build();
