@@ -101,11 +101,6 @@ function buildDriver() {
     sharedDriver.getCapabilities().set('marionette', true);
   }
   sharedDriver = sharedDriver.build();
-
-  // Set global executeAsyncScript() timeout (default is 0) to allow async
-  // callbacks to be caught in tests.
-  sharedDriver.manage().timeouts().setScriptTimeout(2000);
-
   return sharedDriver;
 }
 
