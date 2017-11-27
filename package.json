@@ -13,7 +13,8 @@
     "chromedriver": "^2.33.1",
     "geckodriver": "^1.9.0",
     "tape": ">=4.0.0",
-    "travis-multirunner": "^4.0.0"
+    "travis-multirunner": "^4.0.0",
+    "selenium-webdriver": "^3.6.0"
   },
   "bin": {
     "start-tests": "./src/testrunner/start-tests.sh"
