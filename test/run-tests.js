@@ -18,7 +18,7 @@ require('./test');
 // This is run as a test so it is executed after all tests
 // have completed.
 test('Shutdown', function(t) {
-  require('webrtc-utilities').seleniumLib.buildDriver()
+  require('../main.js').seleniumLib.buildDriver()
   .then(function(driver) {
     driver.getCapabilities().then(function(caps) {
       // Newer geckodriver do not like close() for some reason.
