@@ -82,6 +82,7 @@ function buildDriver() {
       .addArguments('disable-translate')
       .addArguments('no-process-singleton-dialog')
       .addArguments('mute-audio')
+      .addArguments('no-sandbox')
       .setLoggingPrefs(prefs);
 
   // Only enable this for Chrome >= 49.
