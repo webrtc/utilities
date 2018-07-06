@@ -16,7 +16,7 @@
     "test": "grunt && ./test/start-tests.sh"
   },
   "dependencies": {
-    "chromedriver": "^2.33.2",
+    "chromedriver": "^2.40.0",
     "geckodriver": "^1.10.0",
     "grunt": "^0.4.5",
     "grunt-cli": ">=0.1.9",
