@@ -24,7 +24,7 @@
     "grunt-githooks": "^0.6.0",
     "selenium-webdriver": "^3.6.0",
     "tape": "^4.8.0",
-    "travis-multirunner": "^4.3.0",
-    "webrtc-adapter": ">=4.0.0"
+    "webrtc-adapter": ">=4.0.0",
+    "travis-multirunner": "^4.5.0"
   }
 }
