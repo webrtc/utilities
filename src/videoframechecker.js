@@ -43,7 +43,7 @@ VideoFrameChecker.prototype = {
 
     var context = this.canvas_.getContext('2d');
     context.drawImage(this.videoElement_, 0, 0, this.canvas_.width,
-                      this.canvas_.height);
+      this.canvas_.height);
     return context.getImageData(0, 0, this.canvas_.width, this.canvas_.height);
   },
 

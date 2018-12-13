@@ -5,7 +5,7 @@
  *  that can be found in the LICENSE file in the root of the source
  *  tree.
  */
- /* eslint-env node */
+/* eslint-env node */
 
 'use strict';
 
@@ -69,21 +69,21 @@ function buildDriver() {
   profile.setPreference('xpinstall.signatures.required', false);
 
   var firefoxOptions = new firefox.Options()
-      .setProfile(profile)
-      .setBinary('node_modules/.bin/start-firefox');
+    .setProfile(profile)
+    .setBinary('node_modules/.bin/start-firefox');
 
   // Chrome options.
   // http://selenium.googlecode.com/git/docs/api/javascript/module_selenium-webdriver_chrome_class_Options.html#addArguments
   var chromeOptions = new chrome.Options()
-      .setChromeBinaryPath('node_modules/.bin/start-chrome')
-      .addArguments('allow-file-access-from-files')
-      .addArguments('use-fake-device-for-media-stream')
-      .addArguments('use-fake-ui-for-media-stream')
-      .addArguments('disable-translate')
-      .addArguments('no-process-singleton-dialog')
-      .addArguments('mute-audio')
-      .addArguments('no-sandbox')
-      .setLoggingPrefs(prefs);
+    .setChromeBinaryPath('node_modules/.bin/start-chrome')
+    .addArguments('allow-file-access-from-files')
+    .addArguments('use-fake-device-for-media-stream')
+    .addArguments('use-fake-ui-for-media-stream')
+    .addArguments('disable-translate')
+    .addArguments('no-process-singleton-dialog')
+    .addArguments('mute-audio')
+    .addArguments('no-sandbox')
+    .setLoggingPrefs(prefs);
 
   // Only enable this for Chrome >= 49.
   if (process.env.BROWSER === 'chrome' && getBrowserVersion() >= 49) {
@@ -93,10 +93,10 @@ function buildDriver() {
   var edgeOptions = new edge.Options();
 
   sharedDriver = new webdriver.Builder()
-      .forBrowser(process.env.BROWSER)
-      .setFirefoxOptions(firefoxOptions)
-      .setChromeOptions(chromeOptions)
-      .setEdgeOptions(edgeOptions);
+    .forBrowser(process.env.BROWSER)
+    .setFirefoxOptions(firefoxOptions)
+    .setChromeOptions(chromeOptions)
+    .setEdgeOptions(edgeOptions);
 
   if (process.env.BROWSER === 'firefox' && getBrowserVersion() >= 47) {
     sharedDriver.getCapabilities().set('marionette', true);
@@ -117,16 +117,16 @@ function getStats(driver, peerConnection) {
   // Execute getStats on peerconnection named `peerConnection`.
   driver.manage().timeouts().setScriptTimeout(1000);
   return driver.executeAsyncScript(
-      'var callback = arguments[arguments.length - 1];' +
-      peerConnection + '.getStats(null).then(function(report) {' +
-      '  callback(report.entries ? [...report.entries()] : report);' +
-      '});')
-    .then(function(entries) {
-      if (Array.isArray(entries)) {
-        return new Map(entries);
-      }
-      return entries;
-    });
+    'var callback = arguments[arguments.length - 1];' +
+    peerConnection + '.getStats(null).then(function(report) {' +
+    '  callback(report.entries ? [...report.entries()] : report);' +
+	'});'
+  ).then(function(entries) {
+    if (Array.isArray(entries)) {
+      return new Map(entries); // eslint-disable-line no-undef
+    }
+    return entries;
+  });
 }
 
 // Provide the webdriver driver and type of logging:
@@ -136,9 +136,9 @@ function getStats(driver, peerConnection) {
 function getLogs(driver, type) {
   // https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_Logs.html
   driver.manage().logs().get(type)
-  .then(function(entries) {
-    return entries;
-  });
+    .then(function(entries) {
+      return entries;
+    });
 }
 
 // Provide the webdriver driver and type of logging:
@@ -148,11 +148,11 @@ function getLogs(driver, type) {
 function printLogs(driver, type) {
   // https://seleniumhq.github.io/selenium/docs/api/javascript/module/selenium-webdriver/lib/webdriver_exports_Logs.html
   driver.manage().logs().get(type)
-  .then(function(entries) {
-    entries.forEach(function(entry) {
-      console.log('[%s] %s', entry.level.name, entry.message);
+    .then(function(entries) {
+      entries.forEach(function(entry) {
+        console.log('[%s] %s', entry.level.name, entry.message);
+      });
     });
-  });
 }
 
 module.exports = {

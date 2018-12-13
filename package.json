@@ -17,14 +17,14 @@
   },
   "dependencies": {
     "chromedriver": "^2.40.0",
-    "geckodriver": "^1.10.0",
-    "grunt": "^0.4.5",
+    "geckodriver": "^1.14.1",
+    "grunt": "^1.0.3",
     "grunt-cli": ">=0.1.9",
-    "grunt-eslint": "^17.2.0",
+    "grunt-eslint": "^21.0.0",
     "grunt-githooks": "^0.6.0",
     "selenium-webdriver": "^3.6.0",
     "tape": "^4.8.0",
-    "webrtc-adapter": ">=4.0.0",
-    "travis-multirunner": "^4.5.0"
+    "travis-multirunner": "^4.5.0",
+    "webrtc-adapter": ">=4.0.0"
   }
 }
