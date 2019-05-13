@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "chromedriver": "^2.40.0",
-    "geckodriver": "^1.14.1",
-    "grunt": "^1.0.3",
+    "geckodriver": "^1.16.2",
+    "grunt": "^1.0.4",
     "grunt-cli": ">=0.1.9",
     "grunt-eslint": "^21.0.0",
     "grunt-githooks": "^0.6.0",
