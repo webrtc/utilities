@@ -1,7 +1,7 @@
 dist: trusty
 language: node_js
 node_js:
-- 6
+- 8
 
 addons:
   apt:
@@ -9,6 +9,7 @@ addons:
       - gcc
       - g++
       - libstdc++6
+      - libpulse0=1:4.0-0ubuntu11.1
       - pulseaudio
 
 env:
