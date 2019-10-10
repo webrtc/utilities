@@ -9,7 +9,7 @@ addons:
       - gcc
       - g++
       - libstdc++6
-      - libpulse0=1:4.0-0ubuntu11.1
+      - libpulse0=1:4.0-0ubuntu11
       - pulseaudio
 
 env:
