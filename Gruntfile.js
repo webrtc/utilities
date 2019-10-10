@@ -21,7 +21,6 @@ module.exports = function(grunt) {
   });
   // enable plugins
   grunt.loadNpmTasks('grunt-eslint');
-  grunt.loadNpmTasks('grunt-githooks');
 
   // set default tasks to run when grunt is called without parameters
   grunt.registerTask('default', ['eslint']);
